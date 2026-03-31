@@ -1,67 +1,64 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Navbar Scroll Effect
-    const navbar = document.querySelector('.navbar');
-    
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    });
+    // Scroll animations using IntersectionObserver
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
 
-    // Scroll Reveal Animation (Intersection Observer)
-    const revealElements = document.querySelectorAll('.reveal');
-
-    const revealObserver = new IntersectionObserver((entries, observer) => {
+    const observer = new IntersectionObserver((entries, observer) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('active');
-                observer.unobserve(entry.target); // Once revealed, stop observing
+                entry.target.classList.add('animate-fade-in-up');
+                observer.unobserve(entry.target);
             }
         });
-    }, {
-        root: null,
-        threshold: 0.15,
-        rootMargin: "0px 0px -50px 0px"
-    });
+    }, observerOptions);
 
-    revealElements.forEach(el => {
-        revealObserver.observe(el);
-    });
-
-    // Smooth Scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const targetId = this.getAttribute('href');
-            if(targetId === '#') return;
-            
-            e.preventDefault();
-            const targetElement = document.querySelector(targetId);
-            
-            if (targetElement) {
-                const navHeight = navbar.offsetHeight;
-                const targetPosition = targetElement.getBoundingClientRect().top + window.scrollY - navHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
-        });
-    });
-
-    // Simulated Typing effect for typing indicator in mockup
-    const typingIndicator = document.querySelector('.bubble.typing');
-    const chatBubbles = document.querySelector('.chat-bubbles');
+    // Select elements to animate
+    const animatableElements = document.querySelectorAll('.step, .feature-card, .cta-box, .hero-content, .floating-card');
     
-    if (typingIndicator) {
-        setTimeout(() => {
-            typingIndicator.style.display = 'none';
-            const newBubble = document.createElement('div');
-            newBubble.className = 'bubble bot fade-in';
-            newBubble.innerHTML = `Perfect! Found 3 amazing itineraries in Tokyo and Kyoto for $1,850. Check them out! ✨`;
-            chatBubbles.appendChild(newBubble);
-        }, 3000); // After 3 seconds, replace typing with an actual message
-    }
+    // Set initial state for these elements
+    animatableElements.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(30px)';
+        el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        observer.observe(el);
+    });
+
+    // Add CSS class for the animation state
+    const style = document.createElement('style');
+    style.textContent = `
+        .animate-fade-in-up {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+        
+        .floating-card:hover {
+            transform: translateY(-5px) scale(1.02) !important;
+            box-shadow: 0 25px 30px -5px rgba(0, 0, 0, 0.15) !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .feature-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px) !important;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Navigation Active State Toggle
+    const navLinks = document.querySelectorAll('.nav-link');
+    navLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            if(link.getAttribute('href') === '/') return; // allow normal navigation
+            e.preventDefault();
+            navLinks.forEach(nav => nav.classList.remove('active'));
+            link.classList.add('active');
+        });
+    });
 });
