@@ -51,14 +51,13 @@ document.addEventListener('DOMContentLoaded', () => {
     `;
     document.head.appendChild(style);
 
-    // Navigation Active State Toggle
+    // Navigation Active State — allow normal page navigation, just update active class
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            if(link.getAttribute('href') === '/') return; // allow normal navigation
-            e.preventDefault();
+        link.addEventListener('click', () => {
             navLinks.forEach(nav => nav.classList.remove('active'));
             link.classList.add('active');
+            // Navigation proceeds normally via the href
         });
     });
 });
