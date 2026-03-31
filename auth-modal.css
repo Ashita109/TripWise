@@ -140,3 +140,22 @@
     min-height: 16px;
     margin: 0;
 }
+
+.auth-switch {
+    text-align: center;
+    font-size: 14px;
+    color: #8a6f6c;
+    margin-top: 8px;
+}
+
+.auth-switch a {
+    color: #B3191A;
+    font-weight: 700;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.auth-switch a:hover {
+    color: #6F0000;
+    text-decoration: underline;
+}

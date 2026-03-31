@@ -12,12 +12,16 @@ function checkAuth() {
 }
 
 // ── Tab switching ──────────────────────────────────
-function switchTab(tab) {
+function switchTab(tab, event) {
+    if (event) event.preventDefault();
     document.getElementById('loginForm').classList.toggle('hidden', tab !== 'login');
     document.getElementById('registerForm').classList.toggle('hidden', tab !== 'register');
     document.getElementById('tabLogin').classList.toggle('active', tab === 'login');
     document.getElementById('tabRegister').classList.toggle('active', tab === 'register');
 }
+
+// Ensure it's available globally for onclick handlers
+window.switchTab = switchTab;
 
 // ── Login ──────────────────────────────────────────
 document.getElementById('loginForm').addEventListener('submit', async (e) => {

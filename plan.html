@@ -21,8 +21,8 @@
 
             <!-- Tabs -->
             <div class="auth-tabs">
-                <button class="auth-tab active" id="tabLogin" onclick="switchTab('login')">Login</button>
-                <button class="auth-tab" id="tabRegister" onclick="switchTab('register')">Register</button>
+                <button class="auth-tab active" id="tabLogin" onclick="switchTab('login', event)">Login</button>
+                <button class="auth-tab" id="tabRegister" onclick="switchTab('register', event)">Register</button>
             </div>
 
             <!-- Login Form -->
@@ -37,6 +37,7 @@
                 </div>
                 <p class="auth-error" id="loginError"></p>
                 <button type="submit" class="auth-submit font-jakarta font-bold">Sign In</button>
+                <p class="auth-switch font-jakarta">Don't have an account? <a href="#" onclick="switchTab('register', event)">Register</a></p>
             </form>
 
             <!-- Register Form -->
@@ -55,6 +56,7 @@
                 </div>
                 <p class="auth-error" id="registerError"></p>
                 <button type="submit" class="auth-submit font-jakarta font-bold">Create Account</button>
+                <p class="auth-switch font-jakarta">Already have an account? <a href="#" onclick="switchTab('login', event)">Login</a></p>
             </form>
         </div>
     </div>
