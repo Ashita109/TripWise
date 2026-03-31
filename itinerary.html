@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TripWise | Your Itinerary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Righteous&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="itinerary.css">
+</head>
+<body>
+
+    <!-- Decorative blobs -->
+    <div class="decor-blob blob-1"></div>
+    <div class="decor-blob blob-2"></div>
+
+    <!-- Header -->
+    <header class="itin-header">
+        <div class="itin-header-inner">
+            <a href="index.html" class="logo font-righteous">TripWise</a>
+            <nav class="itin-nav">
+                <a href="index.html" class="nav-link font-sora">Explore</a>
+                <a href="plan.html" class="nav-link font-sora">Plan</a>
+            </nav>
+            <div class="header-actions">
+                <span class="user-name font-jakarta" id="userName"></span>
+                <button class="logout-btn font-jakarta" id="logoutBtn">Logout</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Loading State -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader-ring"></div>
+        <p class="loader-text font-sora">Loading your itinerary…</p>
+    </div>
+
+    <!-- Main Itinerary Content -->
+    <main class="itin-main" id="itinMain" style="display:none">
+
+        <!-- Trip Header Card -->
+        <section class="trip-hero">
+            <div class="trip-hero-inner">
+                <div class="trip-badge font-manrope" id="tripBadge">AI-GENERATED VOYAGE</div>
+                <h1 class="trip-title font-sora" id="tripTitle">Your Journey</h1>
+                <div class="trip-meta" id="tripMeta"></div>
+                <div class="budget-pills" id="budgetPills"></div>
+            </div>
+        </section>
+
+        <!-- Days Timeline -->
+        <section class="days-section">
+            <div class="days-container" id="daysContainer"></div>
+        </section>
+
+        <!-- Highlights + Tips -->
+        <section class="extras-section">
+            <div class="extras-grid">
+                <div class="extras-card highlights-card" id="highlightsCard"></div>
+                <div class="extras-card tips-card" id="tipsCard"></div>
+                <div class="extras-card phrases-card" id="phrasesCard"></div>
+            </div>
+        </section>
+
+        <!-- Back CTA -->
+        <div class="back-cta">
+            <a href="plan.html" class="btn-plan-again font-jakarta font-bold">Plan Another Trip →</a>
+        </div>
+    </main>
+
+    <script src="itinerary.js"></script>
+</body>
+</html>
