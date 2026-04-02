@@ -52,7 +52,13 @@ button { cursor: pointer; border: none; background: none; font-family: inherit; 
 }
 
 .logo {
-    font-size: 1.5rem;
+    text-decoration: none;
+    font-size: 28px;
+    line-height: 32px;
+    background: linear-gradient(to right, #dc2626, #f97316, #fbbf24);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
     letter-spacing: -0.5px;
 }
 .logo-red { color: var(--primary-red); }
