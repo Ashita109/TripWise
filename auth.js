@@ -44,6 +44,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
         localStorage.setItem('tw_token', data.access_token);
         localStorage.setItem('tw_user', JSON.stringify(data.user));
         document.getElementById('authOverlay').classList.add('hidden');
+        window.location.href = 'itinerary.html';
     } catch (err) {
         errEl.textContent = err.message;
     }
@@ -71,6 +72,7 @@ document.getElementById('registerForm').addEventListener('submit', async (e) => 
         localStorage.setItem('tw_token', data.access_token);
         localStorage.setItem('tw_user', JSON.stringify(data.user));
         document.getElementById('authOverlay').classList.add('hidden');
+        window.location.href = 'itinerary.html';
     } catch (err) {
         errEl.textContent = err.message;
     }

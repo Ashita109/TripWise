@@ -3,72 +3,268 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TripWise | Your Itinerary</title>
+    <title>Ethereal Navigator | Itinerary</title>
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Righteous&family=Sora:wght@400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="itinerary.css">
 </head>
 <body>
-
-    <!-- Decorative blobs -->
-    <div class="decor-blob blob-1"></div>
-    <div class="decor-blob blob-2"></div>
-
-    <!-- Header -->
-    <header class="itin-header">
-        <div class="itin-header-inner">
-            <a href="index.html" class="logo font-righteous">TripWise</a>
-            <nav class="itin-nav">
-                <a href="index.html" class="nav-link font-sora">Explore</a>
-                <a href="plan.html" class="nav-link font-sora">Plan</a>
+    <!-- Top Navigation -->
+    <header class="navbar">
+        <div class="nav-left">
+            <a href="index.html" class="logo font-righteous">
+                <span class="logo-red">Ethereal </span><span class="logo-yellow">Navigator</span>
+            </a>
+            <nav class="nav-links">
+                <a href="index.html" class="nav-link font-jakarta">EXPLORE</a>
+                <a href="plan.html" class="nav-link font-jakarta">PLAN</a>
+                <a href="itinerary.html" class="nav-link nav-active font-jakarta">ITINERARY</a>
+                <a href="#" class="nav-link font-jakarta">BUDGET</a>
             </nav>
-            <div class="header-actions">
-                <span class="user-name font-jakarta" id="userName"></span>
-                <button class="logout-btn font-jakarta" id="logoutBtn">Logout</button>
+        </div>
+        <div class="nav-right">
+            <button class="icon-btn">
+                <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#534341" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9" />
+                </svg>
+            </button>
+            <button class="icon-btn">
+                <svg width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="#534341" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                </svg>
+            </button>
+            <div class="profile-block">
+                <span class="profile-text font-jakarta" id="userName">Profile</span>
+                <img src="assets/a66fbc4605e5527a4b8ab45ddb16c87aeb4f94bf.png" alt="Profile" class="profile-img" onerror="this.src='https://i.pravatar.cc/150?img=11'">
             </div>
+            <button class="logout-btn font-jakarta" id="logoutBtn" style="display:none;">Logout</button>
         </div>
     </header>
 
-    <!-- Loading State -->
-    <div class="loading-screen" id="loadingScreen">
+    <div class="loading-screen" id="loadingScreen" style="display:none;">
         <div class="loader-ring"></div>
         <p class="loader-text font-sora">Loading your itinerary…</p>
     </div>
 
-    <!-- Main Itinerary Content -->
-    <main class="itin-main" id="itinMain" style="display:none">
+    <!-- Main Container -->
+    <main class="page-container" id="itinMain">
+        <!-- Left Sidebar: Days -->
+        <aside class="sidebar-left">
+            <h2 class="sidebar-title font-sora" id="tripHeaderTitle">Manali Escape</h2>
+            <div class="days-list" id="daysList">
+                <button class="day-btn active"><span class="day-prefix font-jakarta text-uppercase">Day</span> <span class="day-num font-sora">01</span></button>
+                <button class="day-btn"><span class="day-prefix font-jakarta text-uppercase">Day</span> <span class="day-num font-sora">02</span></button>
+                <button class="day-btn"><span class="day-prefix font-jakarta text-uppercase">Day</span> <span class="day-num font-sora">03</span></button>
+                <button class="day-btn"><span class="day-prefix font-jakarta text-uppercase">Day</span> <span class="day-num font-sora">04</span></button>
+                
+                <button class="add-day-btn font-jakarta">
+                    <svg width="24" height="24" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                        <circle cx="12" cy="12" r="10"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v8m-4-4h8"/>
+                    </svg>
+                    Add Day
+                </button>
+            </div>
+        </aside>
 
-        <!-- Trip Header Card -->
-        <section class="trip-hero">
-            <div class="trip-hero-inner">
-                <div class="trip-badge font-manrope" id="tripBadge">AI-GENERATED VOYAGE</div>
-                <h1 class="trip-title font-sora" id="tripTitle">Your Journey</h1>
-                <div class="trip-meta" id="tripMeta"></div>
-                <div class="budget-pills" id="budgetPills"></div>
+        <!-- Middle Content Area -->
+        <section class="content-main">
+            <div class="content-header">
+                <div class="header-text">
+                    <h1 class="main-title font-sora" id="tripTitle">Mountain Soul</h1>
+                    <p class="sub-title font-jakarta" id="tripDateLoc">Monday, Oct 14 • Exploring the snowy peaks of Himachal</p>
+                </div>
+                <button class="share-btn font-jakarta">
+                    <svg width="18" height="18" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
+                    </svg>
+                    Share
+                </button>
+            </div>
+
+            <!-- Activity Cards container -->
+            <div class="cards-container" id="daysContainer">
+                
+                <!-- Card 1 -->
+                <div class="activity-card">
+                    <div class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1605640840605-14ac1855827b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Hadimba Devi Temple" class="card-image">
+                        <div class="ai-pick-badge font-jakarta">✨ AI PICK</div>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-top-row">
+                            <div class="time-info font-jakarta">
+                                <span>🕛 08:30 AM – 10:30 AM</span>
+                            </div>
+                            <div class="price-info">
+                                <span class="price font-sora">₹50</span>
+                                <span class="price-label font-jakarta">Entry Cost</span>
+                            </div>
+                        </div>
+                        <h3 class="card-title font-sora">Hadimba Devi Temple</h3>
+                        <p class="card-desc font-jakarta">Visit the ancient wooden temple dedicated to Hadimba Devi, located amidst a thick cedar forest. A peaceful start to your mountain morning.</p>
+                        
+                        <div class="card-footer">
+                            <div class="votes font-jakarta">
+                                <span class="vote-opt">^ 42</span> <span class="vote-icon">v</span>
+                                <span class="bookmark-icon">🔖</span>
+                            </div>
+                            
+                            <div class="voted-by font-jakarta">
+                                Voted by: 
+                                <span class="vote-avatar">JD</span>
+                                <span class="vote-avatar av-y">AS</span>
+                                <span class="vote-avatar av-b">RK</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="activity-card">
+                    <div class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1596484552431-7bcba6813840?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Solang Valley Adventure" class="card-image">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-top-row">
+                            <div class="time-info font-jakarta">
+                                <span>🚩 11:00 AM – 03:00 PM</span>
+                            </div>
+                            <div class="price-info">
+                                <span class="price font-sora">₹2,500</span>
+                                <span class="price-label font-jakarta">Est. Spend</span>
+                            </div>
+                        </div>
+                        <h3 class="card-title font-sora">Solang Valley Adventure</h3>
+                        <p class="card-desc font-jakarta">Unleash the adrenaline with paragliding, zorbing, and ATV rides. Our AI recommends booking the 'Full Valley Flight' for the best panoramic views of the glaciers.</p>
+                        
+                        <div class="card-footer">
+                            <div class="votes font-jakarta">
+                                <span class="vote-opt">^ 89</span> <span class="vote-icon">v</span>
+                                <span class="bookmark-icon">🔖</span>
+                            </div>
+                            <div class="voted-by ai-tag font-jakarta">
+                                📈 Local Favorite
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="activity-card">
+                    <div class="card-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Old Manali Cafe Crawl" class="card-image">
+                    </div>
+                    <div class="card-content">
+                        <div class="card-top-row">
+                            <div class="time-info font-jakarta">
+                                <span>🍽 04:30 PM – 07:30 PM</span>
+                            </div>
+                            <div class="price-info">
+                                <span class="price font-sora">₹1,200</span>
+                                <span class="price-label font-jakarta">Est. Spend</span>
+                            </div>
+                        </div>
+                        <h3 class="card-title font-sora">Old Manali Cafe Crawl</h3>
+                        <p class="card-desc font-jakarta">Wander through the bohemian streets of Old Manali. Stop at Cafe 1947 for live music and finish at Dylan's Toasted & Roasted for the famous cookies.</p>
+                        
+                        <div class="card-footer">
+                            <div class="votes font-jakarta">
+                                <span class="vote-opt">^ 89</span> <span class="vote-icon">v</span>
+                                <span class="bookmark-icon">🔖</span>
+                            </div>
+                            <div class="voted-by live-music-tag font-jakarta">
+                                🎵 Live Music tonight
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </section>
 
-        <!-- Days Timeline -->
-        <section class="days-section">
-            <div class="days-container" id="daysContainer"></div>
-        </section>
-
-        <!-- Highlights + Tips -->
-        <section class="extras-section">
-            <div class="extras-grid">
-                <div class="extras-card highlights-card" id="highlightsCard"></div>
-                <div class="extras-card tips-card" id="tipsCard"></div>
-                <div class="extras-card phrases-card" id="phrasesCard"></div>
+        <!-- Right Sidebar: Stats & Map -->
+        <aside class="sidebar-right">
+            <!-- Map Card -->
+            <div class="widget-card map-card">
+                <div class="map-image-wrapper">
+                    <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80" alt="Route Map" class="map-image">
+                </div>
+                <div class="map-footer">
+                    <div class="route-header font-jakarta">
+                        <span class="route-title">Route Summary</span>
+                        <span class="route-dist">14.8 km Total</span>
+                    </div>
+                    <div class="route-progress">
+                        <div class="route-dot start"></div>
+                        <div class="route-line"></div>
+                        <div class="route-dot mid"></div>
+                        <div class="route-line light"></div>
+                        <div class="route-dot end"></div>
+                    </div>
+                </div>
             </div>
-        </section>
 
-        <!-- Back CTA -->
-        <div class="back-cta">
-            <a href="plan.html" class="btn-plan-again font-jakarta font-bold">Plan Another Trip →</a>
-        </div>
+            <!-- Efficiency Card -->
+            <div class="widget-card efficiency-card">
+                <h3 class="widget-title font-sora">Plan Efficiency</h3>
+                <div class="efficiency-row font-jakarta">
+                    <span>Transit Time</span>
+                    <span class="time-val">1.2 hours</span>
+                </div>
+                <div class="progress-bar-wrap">
+                    <div class="progress-fill"></div>
+                </div>
+                <p class="efficiency-desc font-jakarta">Optimized for mountain traffic. You'll spend 72% of your day at locations and 28% enjoying the scenic drives.</p>
+            </div>
+            
+            <!-- Suggestion Card -->
+            <div class="widget-card suggestion-card">
+                 <p class="suggestion-desc font-jakarta">Our AI detected a temperature drop tonight. We suggest carrying a fleece for your comfort.</p>
+                 <button class="btn-accept font-jakarta">Accept Suggestion</button>
+            </div>
+        </aside>
     </main>
 
-    <script src="itinerary.js"></script>
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="footer-left">
+                <h3 class="footer-logo font-sora">Ethereal Navigator</h3>
+                <p class="footer-tagline font-jakarta">Redefining the art of exploration through the lens of artificial intelligence and human wonder.</p>
+                <p class="footer-copyright font-jakarta">© 2024 Ethereal Navigator AI. Travel with Soul.</p>
+            </div>
+            <div class="footer-right font-jakarta">
+                <a href="#">Privacy</a>
+                <a href="#">Terms</a>
+                <a href="#">Support</a>
+                <a href="#">Careers</a>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Keep auth guard and username
+            const token = localStorage.getItem('tw_token');
+            if (!token) { window.location.href = 'index.html'; }
+            const user = JSON.parse(localStorage.getItem('tw_user') || '{}');
+            const userNameEl = document.getElementById('userName');
+            if (userNameEl && user.name) userNameEl.textContent = user.name;
+            
+            const logoutBtn = document.getElementById('logoutBtn');
+            if(logoutBtn) {
+                logoutBtn.addEventListener('click', () => {
+                    localStorage.clear();
+                    window.location.href = 'index.html';
+                });
+            }
+            
+            // Un-hide everything since we use static mock overlay layout
+            document.getElementById('loadingScreen').style.display = 'none';
+            document.getElementById('itinMain').style.display = 'flex';
+        });
+    </script>
 </body>
 </html>
